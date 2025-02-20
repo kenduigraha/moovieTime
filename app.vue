@@ -1,6 +1,15 @@
+<script setup>
+  useHead({
+    bodyAttrs: {
+      class: 'bg-midnightblue'
+    }
+  })
+</script>
+
 <template>
   <div>
-    <NuxtRouteAnnouncer />
-    <NuxtWelcome />
+    <NuxtLayout>
+      <NuxtPage />
+    </NuxtLayout>
   </div>
 </template>

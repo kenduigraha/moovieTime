@@ -1,1 +1,5 @@
 @import "tailwindcss";
+
+@theme {
+    --color-midnightblue: #1E232B;
+}

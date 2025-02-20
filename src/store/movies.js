@@ -7,6 +7,7 @@ export const useMovieStore = defineStore('movieStore', () => {
   const error = ref(null);
   const config = useRuntimeConfig()
   const OMDB_API_SECRET_KEY = config.public.secret;
+  
 
   const fetchMovies = async () => {
     loading.value = true;

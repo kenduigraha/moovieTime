@@ -1,31 +1,31 @@
 <script setup>
-import Navbar from '~/src/components/Navbar.vue';
-import Footer from '~/src/components/Footer.vue';
-import ReviewCards from "~/src/components/ReviewCards.vue";
-import { useMovieStore } from "~/src/store/movies";
-import { computed, onMounted } from "vue";
-import { useRoute } from "vue-router";
+    import Navbar from '~/src/components/Navbar.vue';
+    import Footer from '~/src/components/Footer.vue';
+    import ReviewCards from "~/src/components/ReviewCards.vue";
+    import { useMovieStore } from "~/src/store/movies";
+    import { computed, onMounted } from "vue";
+    import { useRoute } from "vue-router";
 
-const route = useRoute();
-const movieStore = useMovieStore();
-const movie = computed(() =>
-movieStore.movies.find((m) => m.imdbID === route.params.id)
-);
+    const route = useRoute();
+    const movieStore = useMovieStore();
+    const movie = computed(() =>
+    movieStore.movies.find((m) => m.imdbID === route.params.id)
+    );
 
-onMounted(async () => {
-if (!movie.value) {
-    await movieStore.fetchMovies();
-}
-});
+    onMounted(async () => {
+    if (!movie.value) {
+        await movieStore.fetchMovies();
+    }
+    });
 
-const recommendedMovies = computed(() => {
-if (!movie.value) return [];
+    const recommendedMovies = computed(() => {
+    if (!movie.value) return [];
 
-const movieGenre = movie.value.genre?.split(", ")[0]; // Ambil genre utama
-return movieStore.movies
-    .filter((m) => m.imdbID !== movie.value.imdbID && m.genre?.includes(movieGenre))
-    .slice(0, 5); // Ambil 5 rekomendasi
-});
+    const movieGenre = movie.value.genre?.split(", ")[0]; // Ambil genre utama
+    return movieStore.movies
+        .filter((m) => m.imdbID !== movie.value.imdbID && m.genre?.includes(movieGenre))
+        .slice(0, 5); // Ambil 5 rekomendasi
+    });
 </script>
 <!-- TODO: enhance navbar & footer -->
 <template>
@@ -136,8 +136,6 @@ return movieStore.movies
       </div>
     </div>
 
-    <!-- Review Section -->
-    <!-- TODO -->
     <section class="bg-white">
       <div class="container p-6 mx-auto max-w-screen-lg">
         <h3 class="text-red-500 font-semibold uppercase">Reviews</h3>
@@ -145,76 +143,18 @@ return movieStore.movies
         <div
           class="flex flex-col md:flex-row gap-6 justify-between items-stretch mt-4"
         >
-          <ReviewCards>
-            <div class="flex justify-between mb-6 items-center">
-              <div class="flex gap-2 items-center">
-                <div class="w-10 h-10 rounded-full bg-gray-600">
-                  <!-- Masukkan profile image di sini -->
-                </div>
-                <div class="">
-                  <p class="font-bold text-sm">Lorem Ipsum.</p>
-                  <span class="text-[#666666] text-xs">November 11, 2025</span>
-                </div>
-              </div>
-
-              <div class="bg-[#C4C4C4] bg-opacity-30 p-2 rounded-md text-xs">
-                ⭐
-                <span class="align-top ml-1 font-semibold text-3xl">5.0</span>
-              </div>
-            </div>
-
-            <p class="text-sm font-light italic text-white">
-              Lorem Ipsum... It isn't as easy as saying 'Wonder Woman 1984' is a
-              good or bad movie. The pieces are there, and there are moments I
-              adore, but it does come across as a bit of a mess, even though the
-              action sequences are breathtaking. If you're a fan of the original
-              film, you'll be more willing to take the ride, but for those more
-              indifferent, it may be a bit of a blander sit. If you can and are
-              planning to watch it, the theatrical experience is the way to go -
-              there is nothing like seeing these stunning sets, fun action
-              scenes and hearing Zimmer's jaw-dropping score like on the big
-              screen. - Chris dos Santos... read the rest.
-            </p>
-          </ReviewCards>
-
-          <ReviewCards>
-            <div class="flex justify-between mb-6 items-center">
-              <div class="flex gap-2 items-center">
-                <div class="w-10 h-10 rounded-full bg-gray-600">
-                  <!-- Masukkan profile image di sini -->
-                </div>
-                <div class="">
-                  <p class="font-bold text-sm">review</p>
-                  <span class="text-[#666666] text-xs">December 11, 2022</span>
-                </div>
-              </div>
-
-              <div class="bg-[#C4C4C4] bg-opacity-30 p-2 rounded-md text-xs">
-                ⭐
-                <span class="align-top ml-1 font-semibold text-3xl">8.0</span>
-              </div>
-            </div>
-
-            <p class="text-sm font-light italic text-white">
-              Lorem Ipsum...If you enjoy reading my Spoiler-Free reviews, please
-              follow my blog @ https://www.msbreviews.com<br /><br />
-              The superhero genre has been growing exponentially during the last
-              decade, so it's bizarre to go through an entire year with only
-              Birds of Prey and The New Mutants instead of literally dozens of
-              films from both Marvel and DC. Thankfully, Warner Bros. decided to
-              release Wonder Woman 1984 before the year's end, but not without a
-              catch. Most people will only have the possibility of watching one
-              of the few blockbusters of 2020 through HBO Max, a streaming
-              service only
-            </p>
-          </ReviewCards>
+        <!-- there's no API for review -->
+          <ReviewCards />
+          <ReviewCards />
         </div>
       </div>
     </section>
 
     <!-- Movie Recommendations Section -->
     <section class="bg-nightblue container p-6 mx-auto max-w-screen-lg">
-      <h3 class="text-white font-semibold uppercase">RECOMMENDATION MOVIES</h3>
+      <h3 class="text-white font-semibold uppercase">
+        RECOMMENDATION MOVIES
+      </h3>
       <div v-if="recommendedMovies.length">
         <div class="grid grid-cols-2 md:grid-cols-5 gap-4 mt-4">
           <div

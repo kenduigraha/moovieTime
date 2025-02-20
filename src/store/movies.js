@@ -11,14 +11,12 @@ export const useMovieStore = defineStore('movieStore', () => {
   const fetchMovies = async () => {
     loading.value = true;
     error.value = null;
-    console.log('fetchMovies')
 
     try {
       const response = await fetch(`https://www.omdbapi.com/?apikey=${OMDB_API_SECRET_KEY}&s=action&type=movie`);
       const data = await response.json();
-      console.log('data: ', data)
 
-      if (data.Response === 'True') {
+      if (data.Response) {
         const movieList = data.Search.slice(0, 10);
         movies.value = await fetchDetail(movieList);
       } else {
@@ -39,7 +37,7 @@ export const useMovieStore = defineStore('movieStore', () => {
       const response = await fetch(`https://www.omdbapi.com/?apikey=${OMDB_API_SECRET_KEY}&s=${query}&type=movie`);
       const data = await response.json();
   
-      if (data.Response === 'True') {
+      if (data.Response) {
         const filteredMovies = data.Search.filter(movie => 
           movie.Title.toLowerCase().includes(query.toLowerCase())
         );

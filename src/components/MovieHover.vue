@@ -1,6 +1,5 @@
 <script setup>
     const props = defineProps(['movie']);
-    console.log('props: ', props)
 </script>
 
 <template>

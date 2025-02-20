@@ -1,27 +1,20 @@
 <script setup>
   import { ref, computed, onMounted } from 'vue';
 
-import Navbar from '~/src/components/Navbar.vue';
-import Footer from '~/src/components/Footer.vue';
-import MovieFilter from '~/src/components/MovieFilter.vue';
+  import Navbar from '~/src/components/Navbar.vue';
+  import Footer from '~/src/components/Footer.vue';
   import { useMovieStore } from '~/src/store/movies';
 
   const movieStore = useMovieStore();
-  const displayedMovies = ref(8); // Menampilkan 12 item awal
-
-  // Sorting
+  const displayedMovies = ref(8);
   const sortOption = ref('Popularity Descending');
-
-  // Filtering by Genre
   const selectedGenres = ref([]);
 
-  // Load More
   const loadMore = () => {
     displayedMovies.value += 8; // Tambahkan 12 item lagi
   };
 
-  // List Sorting
-  const sortOptions = [
+  const optionListFilter = [
     {label: 'Popularity Ascending', value: 'Popularity Ascending'},
     { label: 'Popularity Descending', value: 'Popularity Descending' },
     { label: 'Release Date Ascending', value: 'Release Date Ascending' },
@@ -106,7 +99,7 @@ import MovieFilter from '~/src/components/MovieFilter.vue';
             class="w-full p-2 bg-gray-700 border-none rounded text-xs font-light"
           >
             <option
-              v-for="option in sortOptions"
+              v-for="option in optionListFilter"
               :key="option.value"
               :value="option.value"
             >

@@ -10,11 +10,6 @@
     {name: "TV Shows", links: "/"},
     {name: "Login", links: "/"},
   ];
-  let open = ref(false);
-
-  const menuOpen = () => {
-    open.value = !open.value;
-  }
 
   // Search
   const searchQuery = ref('');
@@ -51,10 +46,12 @@
         </button>
       </div>
 
-      <!-- Menu -->
       <ul 
-        class="bg-midnightblue md:bg-transparent md:flex md:items-center md:px-0 px-10 md:pb-0 pb-10 md:static absolute md:w-auto w-full top-14 duration-200 ease-linear z-50"
-        :class="[open ? 'left-0' : 'left-[-100%]']"
+        class="
+          bg-midnightblue md:bg-transparent md:flex md:items-center
+          pb-10 md:px-0 px-10 md:pb-0 md:static
+          absolute md:w-auto w-full top-14 duration-200 ease-linear z-50
+        "
       >
         <li class="md:mx-4 md:my-0 my-6" v-for="menu in MenuList">
           <router-link :to="menu.links" class="text-sm uppercase hover:text-gray-400 cursor-pointer font-semibold flex items-center" active-class="text-gray-300 font-bold">

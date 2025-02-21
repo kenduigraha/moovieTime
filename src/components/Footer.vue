@@ -7,7 +7,7 @@
     <div
       class="container mx-auto max-w-screen-lg px-6 py-12 flex items-center justify-between"
     >
-      <small class="flex-1 text-left">&copy; 2024 MoovieTime. All rights reserved.</small>
+      <small class="flex-1 text-left">&copy; 2025. All rights reserved.</small>
       <img
         :src="logoGrey"
         alt="Moovie Time"
